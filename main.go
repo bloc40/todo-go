@@ -12,6 +12,14 @@ type Item struct {
 	title string
 }
 
+func Display(list []Item) {
+	fmt.Println("\n---------- You list is ----------")
+	for index, item := range list {
+		fmt.Println(index, ": ", item.title)
+	}
+	fmt.Println("---------------------------------\n")
+}
+
 var	reader = bufio.NewReader(os.Stdin)
 
 func main() {
@@ -24,23 +32,16 @@ func main() {
 
 		switch choice {
 		case 1:
-			fmt.Println("----------------- You list is --------------")
-			for index, item := range list {
-				fmt.Println(index, ": ", item)
-			}
-			fmt.Println("--------------------------------------------")
+			Display(list)
 		case 2:
 			fmt.Print("Enter item: ")
 			input, err := reader.ReadString('\n')
 			checkError(err)
+
 			item := Item{strings.TrimSpace(input)}
 			list = append(list, item)
 
-			fmt.Println("----------------- You list is --------------")
-			for index, item := range list {
-				fmt.Println(index, ": ", item)
-			}
-			fmt.Println("--------------------------------------------")
+			Display(list)
 		case 4:
 			fmt.Println("\nBye bye")
 		default:
