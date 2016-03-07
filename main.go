@@ -15,7 +15,7 @@ type Item struct {
 var	reader = bufio.NewReader(os.Stdin)
 
 func main() {
-	list := []string{}
+	list := []Item{}
 
 	var choice float64
 
@@ -26,14 +26,15 @@ func main() {
 		case 1:
 			fmt.Println("----------------- You list is --------------")
 			for index, item := range list {
-				fmt.Println(" ", index, ": ", item)
+				fmt.Println(index, ": ", item)
 			}
 			fmt.Println("--------------------------------------------")
 		case 2:
 			fmt.Print("Enter item: ")
 			input, err := reader.ReadString('\n')
 			checkError(err)
-			list = append(list, strings.TrimSpace(input))
+			item := Item{strings.TrimSpace(input)}
+			list = append(list, item)
 
 			fmt.Println("----------------- You list is --------------")
 			for index, item := range list {
