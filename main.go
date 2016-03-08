@@ -41,7 +41,17 @@ func main() {
 			item := Item{strings.TrimSpace(input)}
 			list = append(list, item)
 
+			// Display(list)
+		case 3:
 			Display(list)
+			fmt.Print("Enter the item number to delete: ")
+			input, err := reader.ReadString('\n')
+			checkError(err)
+
+			itemNumber,err := strconv.ParseInt(strings.TrimSpace(input), 10, 64)
+			checkError(err)
+
+			list = append(list[:itemNumber], list[itemNumber+1:]...)
 		case 4:
 			fmt.Println("\nBye bye")
 		default:
@@ -54,6 +64,7 @@ func getChoice() float64 {
 	fmt.Println("What to do?")
 	fmt.Println("1. Show List")
 	fmt.Println("2. Add an item")
+	fmt.Println("3. Delete an item")
 	fmt.Println("4. Quit")
 	fmt.Print("> ")
 
