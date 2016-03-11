@@ -34,7 +34,7 @@ func main() {
 			Display(list)
 			RemoveItem(&list)
 		case 5:
-			fmt.Println("\nBye bye")
+			fmt.Println("\nBye")
 		default:
 			fmt.Println("\nBad selection. Try again!")
 		}
@@ -79,7 +79,7 @@ func RemoveItem(list *[]Item) {
 }
 
 func Display(list []Item) {
-	fmt.Println("\n---------- You list is ----------")
+	fmt.Println("\n---------- To Do List -----------")
 	for index, item := range list {
 		fmt.Println(index, ": ", item.title)
 	}
