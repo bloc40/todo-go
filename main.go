@@ -17,7 +17,7 @@ var reader = bufio.NewReader(os.Stdin)
 func main() {
 	list := []Item{}
 
-	var choice int64
+	var choice int
 
 	for choice != 5 {
 		choice = getChoice(list)
@@ -73,7 +73,7 @@ func Display(list []Item) {
 	fmt.Println("---------------------------------")
 }
 
-func getChoice(list []Item) int64 {
+func getChoice(list []Item) int {
 	fmt.Println("\nWhat to do?")
 	fmt.Println("1. Show List")
 	fmt.Println("2. Add an item")
@@ -86,7 +86,7 @@ func getChoice(list []Item) int64 {
 
 	input, err := reader.ReadString('\n')
 	checkError(err)
-	choice, err := strconv.ParseInt(strings.TrimSpace(input), 10, 64)
+	choice, err := strconv.Atoi(strings.TrimSpace(input))
 	checkError(err)
 	return choice
 }
