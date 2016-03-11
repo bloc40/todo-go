@@ -26,43 +26,56 @@ func main() {
 		case 1:
 			Display(list)
 		case 2:
-			fmt.Print("Enter item to add: ")
-			input, err := reader.ReadString('\n')
-			checkError(err)
-
-			item := Item{strings.TrimSpace(input)}
-			list = append(list, item)
+			AddItem(&list)
 		case 3:
 			Display(list)
-			fmt.Print("Enter the item number to edit: ")
-			input, err := reader.ReadString('\n')
-			checkError(err)
-
-			itemNumber, err := strconv.Atoi(strings.TrimSpace(input))
-			checkError(err)
-
-			fmt.Print("Edit item number ", itemNumber, ": ")
-			input, err = reader.ReadString('\n')
-			checkError(err)
-
-			item := Item{strings.TrimSpace(input)}
-			list[itemNumber] = item
+			EditItem(list)
 		case 4:
 			Display(list)
-			fmt.Print("Enter the item number to delete: ")
-			input, err := reader.ReadString('\n')
-			checkError(err)
-
-			itemNumber, err := strconv.Atoi(strings.TrimSpace(input))
-			checkError(err)
-
-			list = append(list[:itemNumber], list[itemNumber+1:]...)
+			RemoveItem(&list)
 		case 5:
 			fmt.Println("\nBye bye")
 		default:
 			fmt.Println("\nBad selection. Try again!")
 		}
 	}
+}
+
+func AddItem(list *[]Item) {
+	fmt.Print("Enter item to add: ")
+	input, err := reader.ReadString('\n')
+	checkError(err)
+
+	item := Item{strings.TrimSpace(input)}
+	*list = append(*list, item)
+}
+
+func EditItem(list []Item) {
+	fmt.Print("Enter the item number to edit: ")
+	input, err := reader.ReadString('\n')
+	checkError(err)
+
+	itemNumber, err := strconv.Atoi(strings.TrimSpace(input))
+	checkError(err)
+
+	fmt.Print("Edit item number ", itemNumber, ": ")
+	input, err = reader.ReadString('\n')
+	checkError(err)
+
+	item := Item{strings.TrimSpace(input)}
+	list[itemNumber] = item
+}
+
+func RemoveItem(list *[]Item) {
+	fmt.Print("Enter the item number to delete: ")
+	input, err := reader.ReadString('\n')
+	checkError(err)
+
+	itemNumber, err := strconv.Atoi(strings.TrimSpace(input))
+	checkError(err)
+
+	slice := *list
+	*list = append(slice[:itemNumber], slice[itemNumber+1:]...)
 }
 
 func Display(list []Item) {
