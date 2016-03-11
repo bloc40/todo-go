@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"bufio"
+	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -12,7 +12,7 @@ type Item struct {
 	title string
 }
 
-var	reader = bufio.NewReader(os.Stdin)
+var reader = bufio.NewReader(os.Stdin)
 
 func main() {
 	list := []Item{}
@@ -20,7 +20,7 @@ func main() {
 	var choice int64
 
 	for choice != 5 {
-		choice = getChoice()
+		choice = getChoice(list)
 
 		switch choice {
 		case 1:
@@ -73,12 +73,14 @@ func Display(list []Item) {
 	fmt.Println("---------------------------------")
 }
 
-func getChoice() int64 {
+func getChoice(list []Item) int64 {
 	fmt.Println("\nWhat to do?")
 	fmt.Println("1. Show List")
 	fmt.Println("2. Add an item")
-	fmt.Println("3. Edit an item")
-	fmt.Println("4. Delete an item")
+	if len(list) > 0 {
+		fmt.Println("3. Edit an item")
+		fmt.Println("4. Delete an item")
+	}
 	fmt.Println("5. Quit")
 	fmt.Print("> ")
 
