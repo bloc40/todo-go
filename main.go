@@ -38,7 +38,7 @@ func main() {
 			input, err := reader.ReadString('\n')
 			checkError(err)
 
-			itemNumber, err := strconv.ParseInt(strings.TrimSpace(input), 10, 64)
+			itemNumber, err := strconv.Atoi(strings.TrimSpace(input))
 			checkError(err)
 
 			fmt.Print("Edit item number ", itemNumber, ": ")
@@ -53,7 +53,7 @@ func main() {
 			input, err := reader.ReadString('\n')
 			checkError(err)
 
-			itemNumber, err := strconv.ParseInt(strings.TrimSpace(input), 10, 64)
+			itemNumber, err := strconv.Atoi(strings.TrimSpace(input))
 			checkError(err)
 
 			list = append(list[:itemNumber], list[itemNumber+1:]...)
