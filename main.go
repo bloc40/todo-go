@@ -58,7 +58,7 @@ func EditItem(list []Item) {
 	itemNumber, err := strconv.Atoi(strings.TrimSpace(input))
 	checkError(err)
 
-	fmt.Print("Edit item number ", itemNumber, ": ")
+	fmt.Printf("Edit item number %d: ", itemNumber)
 	input, err = reader.ReadString('\n')
 	checkError(err)
 
